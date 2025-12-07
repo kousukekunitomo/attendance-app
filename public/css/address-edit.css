@@ -1,0 +1,60 @@
+.addr-wrap {
+    max-width: 720px;
+    margin: 24px auto 48px;
+    padding: 24px 16px;
+    background: #fff;
+}
+
+.addr-title {
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.addr-form {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.err {
+    color: #d00;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.submit-btn {
+    display: block;
+    width: 240px;
+    height: 36px;
+    margin: 18px auto 0;
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    filter: brightness(.97);
+}

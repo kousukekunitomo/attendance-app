@@ -1,0 +1,112 @@
+/* 画面全体のセンタリング */
+.verify-wrap {
+    min-height: auto;
+    /* 100vhベースを解除 */
+    display: block;
+    /* grid を解除 */
+    place-items: initial;
+    /* リセット */
+    padding: 16px 16px;
+    /* 余白を小さく */
+    margin: 50px auto 64px;
+    /* ← 上余白 */
+    max-width: 760px;
+
+}
+
+
+.verify-card {
+    text-align: center;
+    max-width: 620px;
+}
+
+/* タイトル文 */
+.verify-title {
+    font-size: 16px;
+    line-height: 1.9;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 28px;
+}
+
+/* 大きめのボタン */
+.verify-primary-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: 1px solid #9b9b9b;
+    background: #e6e6e6;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: filter .15s ease;
+}
+
+.verify-primary-btn:hover {
+    filter: brightness(0.95);
+}
+
+.verify-primary-btn.disabled {
+    pointer-events: none;
+    opacity: .6;
+}
+
+/* ステータス文（再送完了メッセージなど） */
+.verify-status {
+    margin: 18px 0 0;
+    font-size: 13px;
+    color: #2c7a2c;
+}
+
+/* 再送リンク（青い小さめリンク） */
+.verify-resend {
+    margin-top: 16px;
+}
+
+.verify-resend-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: #2d6cdf;
+    /* 青 */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.verify-resend-link:hover {
+    text-decoration: none;
+}
+
+/* スマホ調整（少し文字を大きめに） */
+@media (max-width: 480px) {
+    .verify-title {
+        font-size: 15px;
+    }
+
+    .verify-primary-btn {
+        width: 100%;
+    }
+}
+
+.verify-resend-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: #2d6cdf;
+    cursor: pointer;
+    text-decoration: none;
+    /* ← 下線を外す */
+}
+
+.verify-resend-link:hover {
+    text-decoration: none;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+

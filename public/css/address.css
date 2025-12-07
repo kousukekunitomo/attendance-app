@@ -1,0 +1,131 @@
+/* ===================================================================
+   address.css  最終版（見本準拠：中央寄せ・1カラム・バリデ統一）
+   - レイアウトは1カラム固定（ラベル上／入力下）
+   - カード外枠なし。余白はフォーム側で管理
+   - 入力/エラーの見た目は validation.css と同一トーン
+   =================================================================== */
+
+:root {
+    --line: #dcdcdc;
+    --danger: #e23;
+    --btn: #f15b6c;
+    --text: #000;
+    --focus: #7b6651;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.address-wrap {
+    max-width: 780px;
+    margin: 24px auto 72px;
+    padding: 0 12px;
+    color: var(--text);
+}
+
+.address-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 12px 0 20px;
+}
+
+/* フラッシュ */
+.flash.ok {
+    margin: 12px 0 16px;
+    padding: 10px 12px;
+    border: 1px solid #cfe8d1;
+    background: #f4fbf5;
+    color: #2f7a36;
+}
+
+/* 枠は不要（見本通り） */
+.address-card {
+    border: none;
+    border-radius: 0;
+    background: #fff;
+    padding: 0;
+}
+
+/* フォーム本体：中央・固定幅 */
+.address-form {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 12px 6px;
+}
+
+.address-form .form-rows {
+    display: grid;
+    gap: 18px;
+}
+
+.address-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+
+/* ラベル */
+.form-label {
+    margin-bottom: 4px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* 入力（validation.css と同等） */
+.input {
+    width: 100%;
+    height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 8px 12px;
+    font-size: 14px;
+    outline: none;
+}
+
+.input:focus {
+    border-color: var(--focus);
+    box-shadow: 0 0 0 3px rgba(123, 102, 81, .12);
+}
+
+/* バリデーション（validation.css と同等） */
+.is-error {
+    border-color: var(--danger) !important;
+    box-shadow: 0 0 0 3px rgba(226, 35, 35, .08) !important;
+}
+
+.error-text {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--danger);
+}
+
+/* ボタン：入力と同幅 */
+.btn-submit {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    /* 角丸を消すなら 0 */
+    background: var(--btn);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter .15s ease;
+}
+
+.btn-submit:hover {
+    filter: brightness(.96);
+}
+
+.address-form .form-row:last-child {
+    margin-top: 8px;
+}
+
+/* スマホ */
+@media (max-width:640px) {
+    .address-form {
+        max-width: 100%;
+    }
+}

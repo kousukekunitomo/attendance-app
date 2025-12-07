@@ -1,0 +1,270 @@
+/* --- 共通スタイル --- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.sell-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.error-message ul {
+    padding: 10px;
+    background-color: #ffe6e6;
+    border: 1px solid #f00;
+    color: #f00;
+    border-radius: 4px;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* --- 画像アップロード部分 --- */
+.image-upload-box {
+    width: 100%;
+    height: 180px;
+    border: 1px dashed;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* --- 画像選択ボタン --- */
+.upload-button {
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #F15B6C;
+    color: #F15B6C;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.upload-button:hover {
+    background-color: #F15B6C;
+    color: #fff;
+}
+
+.upload-button input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.image-preview-wrapper {
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-preview {
+    display: none;
+    /* 初期は非表示 */
+    max-height: 100px;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* --- カテゴリボタン --- */
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: #f66;
+    border: 1px solid #f66;
+    border-radius: 70px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s, color .2s, border-color .2s;
+}
+
+.category-label input[type="checkbox"] {
+    position: absolute;
+    inset: 0;
+    /* ラベル全体が押せる */
+    opacity: 0;
+    /* 非表示 */
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+.category-label:has(input[type="checkbox"]:checked) {
+    background-color: #f66;
+    color: #fff;
+    border-color: #f66;
+}
+
+/* :has 非対応ブラウザ用のフォールバック（JSが .selected を付与） */
+.category-label.selected {
+    background-color: #f66;
+    color: #fff;
+    border-color: #f66;
+}
+
+
+
+/* --- その他入力欄 --- */
+.form-select,
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.form-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 40px 10px 10px;
+    /* 右に余白を作る */
+    font-size: 14px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2210%22%20height%3D%226%22%20viewBox%3D%220%200%2010%206%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%206l5%20-6%22%20fill%3D%22%23333%22/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px 6px;
+    cursor: pointer;
+}
+
+.section-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.price-input {
+    position: relative;
+}
+
+.price-input input {
+    padding-left: 24px;
+    /* Yen マーク分の余白 */
+}
+
+.price-input::before {
+    content: "¥";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #333;
+}
+
+.price-input .yen-mark {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.submit-button {
+    background-color: #f66;
+    color: #fff;
+    font-size: 16px;
+    padding: 14px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #e45a5a;
+}
+
+/* --- レスポンシブ --- */
+@media (max-width: 768px) {
+    .sell-container {
+        padding: 20px;
+    }
+
+    .form-label {
+        font-size: 13px;
+    }
+
+    .category-label {
+        font-size: 12px;
+    }
+
+    .upload-button {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+
+    .image-preview {
+        max-width: 150px;
+    }
+}

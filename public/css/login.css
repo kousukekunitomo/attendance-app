@@ -1,0 +1,94 @@
+/* 共通設定 */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+/* ヘッダー黒帯とロゴ左寄せ */
+.site-header {
+    width: 100%;
+    background-color: #000;
+    padding: 10px 40px;
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 24px;
+}
+
+/* ログインフォーム中央揃え */
+.login-container {
+    max-width: 1540px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.form-area {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #f66;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.register-link a {
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+/* 画面幅1400〜1540pxでの調整 */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .login-container {
+        padding: 60px;
+    }
+}
+
+.error {
+    color: #d8000c;
+    background-color: #ffdddd;
+    padding: 8px 10px;
+    border-left: 4px solid #d8000c;
+    margin-top: 5px;
+    font-size: 14px;
+    border-radius: 4px;
+}
