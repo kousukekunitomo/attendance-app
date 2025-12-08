@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: flea-market-app
+    container_name: attendance-app
     volumes:
       - .:/var/www
       - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
@@ -16,7 +16,7 @@ services:
 
   nginx:
     image: nginx:1.21.1
-    container_name: flea-nginx
+    container_name: attendance-nginx
     ports:
       - "8000:80"
     volumes:
@@ -29,10 +29,10 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: flea-market-db
+    container_name: attendance_app
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel_db
+      MYSQL_DATABASE: attendance_app
       MYSQL_USER: laravel_user
       MYSQL_PASSWORD: secret
     ports:
@@ -44,7 +44,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: flea-market-pma
+    container_name: attendance-pma
     environment:
       PMA_HOST: db
       PMA_USER: laravel_user
@@ -58,7 +58,7 @@ services:
 
   mailhog:                # ← services 直下に独立させる
     image: mailhog/mailhog:v1.0.1
-    container_name: flea-mailhog
+    container_name: attendance-mailhog
     ports:
       - "1025:1025"      # SMTP
       - "8025:8025"      # Web UI http://localhost:8025

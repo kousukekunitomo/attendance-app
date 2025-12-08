@@ -17,6 +17,8 @@ use App\Models\Profile;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Models\Comment;
+use App\Models\Attendance;                    // ★ 追加
+use App\Models\AttendanceCorrectionRequest;   // ★ 追加
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -83,6 +85,18 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasLiked(Item $item): bool
     {
         return $this->likedItems()->where('items.id', $item->id)->exists();
+    }
+
+    /** 勤怠データ */
+    public function attendances(): HasMany      // ★ 型を付ける
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    /** 自分が出した勤怠修正申請 */
+    public function attendanceCorrectionRequests(): HasMany   // ★ 型を付ける
+    {
+        return $this->hasMany(AttendanceCorrectionRequest::class);
     }
 
     /* ============== 認証メール送信（重複ガード付き） ============== */
