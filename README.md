@@ -129,7 +129,7 @@ MailHog を使用してメールを確認できます。
 
 ## ER図
 
-（必要ならここに画像追加）
+![ER図](public/images/er-diagram.png)
 
 ---
 
