@@ -4,24 +4,29 @@ body {
     margin: 0;
     padding: 0;
     background-color: #fff;
+    color: #000;
 }
 
-/* ヘッダー黒帯とロゴ左寄せ */
+/* ヘッダー */
 .site-header {
     width: 100%;
     background-color: #000;
-    padding: 10px 40px;
+    padding: 14px 32px;
     box-sizing: border-box;
 }
 
 .logo {
     height: 24px;
+    display: block;
 }
 
-/* ログインフォーム中央揃え */
+/* ログインフォーム中央配置 */
 .login-container {
+    width: 100%;
     max-width: 1540px;
-    margin: 40px auto;
+    margin: 0 auto;
+    padding: 72px 20px 0;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
 }
@@ -33,62 +38,87 @@ body {
 
 .login-title {
     font-size: 24px;
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0 0 36px;
+    line-height: 1.4;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 24px;
 }
 
 .form-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .form-group input {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    height: 38px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #cfcfcf;
     box-sizing: border-box;
+    outline: none;
+    background-color: #fff;
+}
+
+.form-group input:focus {
+    border-color: #666;
 }
 
 .login-btn {
     width: 100%;
-    padding: 12px;
-    background-color: #f66;
-    color: white;
-    font-weight: bold;
+    height: 36px;
+    margin-top: 8px;
+    background-color: #000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
     border: none;
     cursor: pointer;
-    margin-top: 10px;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
 }
 
 .register-link {
     text-align: center;
-    margin-top: 12px;
+    margin-top: 18px;
 }
 
 .register-link a {
-    font-size: 14px;
-    color: #007BFF;
+    font-size: 12px;
+    color: #5daeea;
     text-decoration: none;
 }
 
-/* 画面幅1400〜1540pxでの調整 */
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .login-container {
-        padding: 60px;
-    }
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.input.is-error {
+    border-color: #e23;
 }
 
 .error {
-    color: #d8000c;
-    background-color: #ffdddd;
+    color: #e23;
+    background-color: #fff1f1;
     padding: 8px 10px;
-    border-left: 4px solid #d8000c;
-    margin-top: 5px;
-    font-size: 14px;
+    border-left: 4px solid #e23;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.5;
     border-radius: 4px;
+}
+
+/* PC幅 1400〜1540px でも崩れないように維持 */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .login-container {
+        padding-top: 72px;
+    }
 }

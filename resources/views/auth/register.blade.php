@@ -9,7 +9,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="name">ユーザー名</label>
+                <label for="name">名前</label>
                 <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
                 @error('name')
                     <div class="error">{{ $message }}</div>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                <label for="password_confirmation">確認用パスワード</label>
+                <label for="password_confirmation">パスワード確認</label>
                 <input id="password_confirmation" type="password" name="password_confirmation" required>
                 @error('password_confirmation')
                     <div class="error">{{ $message }}</div>

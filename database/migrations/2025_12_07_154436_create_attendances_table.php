@@ -6,37 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * 勤怠情報テーブル
-     */
     public function up(): void
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
 
-            // 利用ユーザー
-            $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
-            // 勤務日（「date」は予約語なので work_date にしておく）
             $table->date('work_date');
 
-            // 打刻情報
-            $table->time('clock_in')->nullable();      // 出勤時刻
-            $table->time('clock_out')->nullable();     // 退勤時刻
-            $table->time('rest_start')->nullable();    // 休憩開始
-            $table->time('rest_end')->nullable();      // 休憩終了
+            // 出勤/退勤（正）
+            $table->timestamp('clock_in_at')->nullable();
+            $table->timestamp('clock_out_at')->nullable();
 
-            // 勤務時間（分）…後でバッチ or 保存時に計算してもOK
-            $table->unsignedInteger('total_work_minutes')->nullable();
-
-            // ステータス：勤務中 / 休憩中 / 退勤済 などを管理する想定
-            $table->string('status', 20)->default('not_worked');
+            // 集計（残すならOK）
+            $table->integer('break_minutes')->default(0);
+            $table->integer('work_minutes')->default(0);
 
             $table->timestamps();
 
-            // ユーザー×日付は1レコードにする想定
             $table->unique(['user_id', 'work_date']);
         });
     }

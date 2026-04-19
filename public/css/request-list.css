@@ -1,0 +1,171 @@
+/* =========================
+   全体
+========================= */
+.request-page {
+    min-height: calc(100vh - 60px);
+    background: #f2f2f2;
+    padding: 40px 0 80px;
+}
+
+.request-list {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* =========================
+   タイトル
+========================= */
+.request-list__title {
+    margin-bottom: 24px;
+}
+
+.request-list__title h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.4;
+    color: #111;
+}
+
+.request-list__title h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 28px;
+    background: #111;
+    border-radius: 2px;
+}
+
+/* =========================
+   タブ
+========================= */
+.request-tabs {
+    display: flex;
+    gap: 48px;
+    border-bottom: 1px solid #999;
+    margin-bottom: 28px;
+    padding: 0 8px;
+}
+
+.request-tab {
+    display: inline-block;
+    padding: 0 0 12px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    position: relative;
+}
+
+/* アクティブ */
+.request-tab.is-active {
+    color: #111;
+}
+
+.request-tab.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #111;
+}
+
+/* =========================
+   テーブル
+========================= */
+.request-table-wrap {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.request-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+/* ヘッダー */
+.request-table thead th {
+    background: #fff;
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 2px solid #e5e5e5;
+    font-weight: 700;
+    color: #666;
+}
+
+/* ボディ */
+.request-table tbody td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #ededed;
+    color: #333;
+}
+
+/* 最終行 */
+.request-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================
+   ステータス
+========================= */
+.status-pending {
+    color: #e23;
+    font-weight: 700;
+}
+
+.status-approved {
+    color: #4a90e2;
+    font-weight: 700;
+}
+
+/* =========================
+   詳細リンク
+========================= */
+.detail-link {
+    color: #111;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* =========================
+   空データ
+========================= */
+.request-empty {
+    text-align: center;
+    color: #777;
+    padding: 24px 12px;
+}
+
+/* =========================
+   レスポンシブ
+========================= */
+@media screen and (max-width: 768px) {
+
+    .request-page {
+        padding: 32px 16px 64px;
+    }
+
+    .request-list {
+        max-width: 100%;
+    }
+
+    .request-tabs {
+        gap: 24px;
+    }
+
+    .request-table thead th,
+    .request-table tbody td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}

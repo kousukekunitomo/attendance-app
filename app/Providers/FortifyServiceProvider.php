@@ -27,9 +27,9 @@ class FortifyServiceProvider extends ServiceProvider
     {
         // Contract ←→ 実装 をバインド
         $this->app->singleton(CreatesNewUsers::class, CreateNewUser::class);
-        $this->app->singleton(LoginResponseContract::class,     LoginResponse::class);
-        $this->app->singleton(RegisterResponseContract::class,  RegisterResponse::class);
-        $this->app->singleton(LogoutResponseContract::class,    LogoutResponse::class);
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
+        $this->app->singleton(RegisterResponseContract::class, RegisterResponse::class);
+        $this->app->singleton(LogoutResponseContract::class, LogoutResponse::class);
     }
 
     public function boot(): void
@@ -40,14 +40,14 @@ class FortifyServiceProvider extends ServiceProvider
 
         // ログインのレート制限（5回/分）
         RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(5)->by(($request->email ?? 'guest').'|'.$request->ip());
+            return Limit::perMinute(5)->by(($request->email ?? 'guest') . '|' . $request->ip());
         });
 
         // ログイン処理（LoginRequest のルール/メッセージを再利用）
         Fortify::authenticateUsing(function (Request $request) {
             $form       = app(LoginRequest::class);
             $rules      = $form->rules();
-            $messages   = method_exists($form, 'messages')   ? $form->messages()   : [];
+            $messages   = method_exists($form, 'messages') ? $form->messages() : [];
             $attributes = method_exists($form, 'attributes') ? $form->attributes() : [];
 
             $validated = Validator::make($request->all(), $rules, $messages, $attributes)->validate();
@@ -59,6 +59,7 @@ class FortifyServiceProvider extends ServiceProvider
                     'email' => ['ログイン情報が登録されていません'],
                 ]);
             }
+
             return $user;
         });
     }

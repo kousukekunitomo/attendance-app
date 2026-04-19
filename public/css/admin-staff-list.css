@@ -1,0 +1,151 @@
+/* 全体背景 */
+.staff-page {
+    min-height: calc(100vh - 60px);
+    background: #f2f2f2;
+    padding: 56px 0 80px;
+}
+
+/* 全体ラッパー */
+.staff-list {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* タイトル */
+.staff-list__title {
+    margin-bottom: 34px;
+}
+
+.staff-list__title h1 {
+    margin: 0;
+    padding-left: 16px;
+    position: relative;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111;
+}
+
+.staff-list__title h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: #111;
+    border-radius: 2px;
+}
+
+/* テーブル外枠 */
+.staff-table-wrap {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* テーブル */
+.staff-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.staff-table thead tr {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.staff-table tbody tr {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.staff-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.staff-table th,
+.staff-table td {
+    padding: 12px 18px;
+    font-size: 12px;
+    line-height: 1.4;
+    vertical-align: middle;
+    text-align: center;
+    color: #555;
+}
+
+.staff-table th {
+    color: #777;
+    font-weight: 600;
+    background: #fff;
+}
+
+.staff-table td {
+    font-weight: 600;
+    background: #fff;
+}
+
+/* 列幅 */
+.staff-table .col-name {
+    width: 28%;
+}
+
+.staff-table .col-email {
+    width: 44%;
+    letter-spacing: 0.08em;
+}
+
+.staff-table .col-detail {
+    width: 28%;
+}
+
+/* 詳細リンク */
+.detail-link {
+    display: inline-block;
+    color: #111;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 768px) {
+    .staff-page {
+        padding: 32px 16px 64px;
+    }
+
+    .staff-list {
+        max-width: 100%;
+    }
+
+    .staff-list__title {
+        margin-bottom: 24px;
+    }
+
+    .staff-list__title h1 {
+        font-size: 18px;
+        padding-left: 14px;
+    }
+
+    .staff-list__title h1::before {
+        width: 3px;
+        height: 24px;
+    }
+
+    .staff-table th,
+    .staff-table td {
+        padding: 10px 8px;
+        font-size: 11px;
+    }
+
+    .staff-table .col-email {
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    .detail-link {
+        font-size: 11px;
+    }
+}

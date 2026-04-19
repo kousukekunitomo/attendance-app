@@ -3,61 +3,55 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    /** ログイン画面表示 */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /** ログイン処理：登録時のみメール認証、ログイン時は送らない */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate(
-            [
-                'email'    => ['required','string','email'],
-                'password' => ['required','string','min:8'],
-            ],
-            [
-                'email.required'    => 'メールアドレスを入力してください',
-                'email.email'       => 'メールアドレスはメール形式で入力してください',
-                'password.required' => 'パスワードを入力してください',
-                'password.min'      => 'パスワードは8文字以上で入力してください',
-            ]
-        );
-
-        $remember = $request->boolean('remember', false);
+        $credentials = $request->validated();
+        $remember    = $request->boolean('remember', false);
 
         if (! Auth::attempt($credentials, $remember)) {
-            throw ValidationException::withMessages([
-                'email' => 'メールアドレスまたはパスワードが正しくありません。',
-            ])->redirectTo(route('login'));
+            return back()
+                ->withErrors(['email' => 'メールアドレスまたはパスワードが正しくありません。'])
+                ->withInput($request->only('email'));
         }
 
-        // セッション再生成
         $request->session()->regenerate();
 
-        // 未認証なら再送はしない。通知ページへ誘導のみ。
         $user = $request->user();
+
         if (method_exists($user, 'hasVerifiedEmail') && ! $user->hasVerifiedEmail()) {
             return redirect()->route('verification.notice');
         }
 
-        // 認証済みなら通常どおり
-        return redirect()->intended(route('items.index'));
+        // ✅ 管理者は intended を無視して管理画面に固定
+        if ((int)$user->is_admin === 1) {
+            $request->session()->forget('url.intended');
+            return redirect()->route('admin.attendance.index');
+        }
+
+        // ✅ 一般ユーザーのみ intended を使う（なければ /attendance）
+        return redirect()->intended(route('attendance.index'));
     }
 
-    /** ログアウト */
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')->with('status', 'ログアウトしました。');
+
+        return redirect()
+            ->route('login')
+            ->with('status', 'ログアウトしました。');
     }
 }

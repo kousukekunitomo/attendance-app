@@ -13,14 +13,17 @@ class AttendanceCorrectionRequest extends Model
         'attendance_id',
         'user_id',
         'work_date',
+
         'before_clock_in',
         'before_clock_out',
         'before_rest_start',
         'before_rest_end',
+
         'after_clock_in',
         'after_clock_out',
         'after_rest_start',
         'after_rest_end',
+
         'reason',
         'status',
         'approved_by',
@@ -28,16 +31,8 @@ class AttendanceCorrectionRequest extends Model
     ];
 
     protected $casts = [
-        'work_date'        => 'date',
-        'approved_at'      => 'datetime',
-        'before_clock_in'  => 'datetime:H:i',
-        'before_clock_out' => 'datetime:H:i',
-        'before_rest_start'=> 'datetime:H:i',
-        'before_rest_end'  => 'datetime:H:i',
-        'after_clock_in'   => 'datetime:H:i',
-        'after_clock_out'  => 'datetime:H:i',
-        'after_rest_start' => 'datetime:H:i',
-        'after_rest_end'   => 'datetime:H:i',
+        'work_date'   => 'date',
+        'approved_at' => 'datetime',
     ];
 
     /** 対象の勤怠 */
@@ -56,5 +51,13 @@ class AttendanceCorrectionRequest extends Model
     public function approver()
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function breaks()
+    {
+        return $this->hasMany(
+            AttendanceCorrectionRequestBreak::class,
+            'attendance_correction_request_id'
+        );
     }
 }

@@ -1,0 +1,245 @@
+.staff-attendance-page {
+    min-height: calc(100vh - 60px);
+    background: #f2f2f2;
+    padding: 56px 0 80px;
+}
+
+.staff-attendance {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.staff-attendance__title {
+    margin-bottom: 26px;
+}
+
+.staff-attendance__title h1 {
+    margin: 0;
+    padding-left: 16px;
+    position: relative;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111;
+}
+
+.staff-attendance__title h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: #111;
+    border-radius: 2px;
+}
+
+.staff-attendance__month-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 26px;
+}
+
+.month-nav {
+    color: #777;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.month-nav--disabled {
+    color: #c0c0c0;
+    pointer-events: none;
+}
+
+.month-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #111;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.calendar-icon {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.staff-attendance-table-wrap {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.staff-attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.staff-attendance-table thead tr {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.staff-attendance-table tbody tr {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.staff-attendance-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.staff-attendance-table th,
+.staff-attendance-table td {
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    vertical-align: middle;
+    color: #555;
+    background: #fff;
+}
+
+.staff-attendance-table th {
+    color: #777;
+    font-weight: 600;
+}
+
+.staff-attendance-table td {
+    font-weight: 600;
+}
+
+.staff-attendance-table .col-date {
+    width: 24%;
+}
+
+.staff-attendance-table .col-time {
+    width: 13%;
+}
+
+.staff-attendance-table .col-break {
+    width: 13%;
+}
+
+.staff-attendance-table .col-total {
+    width: 13%;
+}
+
+.staff-attendance-table .col-detail {
+    width: 12%;
+}
+
+/* 土日カラーはPCでも効く位置に置く */
+.staff-attendance-table td.is-sunday {
+    color: #d33;
+}
+
+.staff-attendance-table td.is-saturday {
+    color: #3366cc;
+}
+
+.detail-link {
+    display: inline-block;
+    color: #111;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.detail-link:visited,
+.detail-link:hover,
+.detail-link:active {
+    color: #111;
+    text-decoration: none;
+}
+
+.detail-link--disabled {
+    color: #bbb;
+}
+
+.staff-attendance__actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.csv-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 108px;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: 4px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.csv-button:visited,
+.csv-button:hover,
+.csv-button:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .staff-attendance-page {
+        padding: 32px 16px 64px;
+    }
+
+    .staff-attendance {
+        max-width: 100%;
+    }
+
+    .staff-attendance__title {
+        margin-bottom: 22px;
+    }
+
+    .staff-attendance__title h1 {
+        font-size: 18px;
+        padding-left: 14px;
+    }
+
+    .staff-attendance__title h1::before {
+        width: 3px;
+        height: 24px;
+    }
+
+    .staff-attendance__month-nav {
+        padding: 10px 12px;
+        margin-bottom: 22px;
+    }
+
+    .month-nav {
+        font-size: 11px;
+    }
+
+    .month-label {
+        font-size: 14px;
+        gap: 6px;
+    }
+
+    .staff-attendance-table th,
+    .staff-attendance-table td {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+
+    .csv-button {
+        min-width: 96px;
+        height: 36px;
+        font-size: 12px;
+    }
+}

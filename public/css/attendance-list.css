@@ -1,0 +1,118 @@
+.attendance-page {
+    min-height: calc(100vh - 60px);
+    background: #f2f2f2;
+    padding: 30px 0 80px;
+}
+
+.attendance-list {
+    width: 100%;
+    max-width: 760px;
+    margin: 32px auto 0;
+}
+
+.attendance-list__title {
+    margin-bottom: 18px;
+}
+
+.attendance-list__title h1 {
+    font-size: 20px;
+    font-weight: 700;
+    padding-left: 12px;
+    position: relative;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.attendance-list__title h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 22px;
+    background-color: #111;
+    border-radius: 2px;
+}
+
+.attendance-list__month {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 28px;
+}
+
+.month-nav {
+    color: #333;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.month-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.attendance-table-wrap {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.attendance-table thead th {
+    background: #fff;
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 3px solid #e6e6e6;
+    font-weight: 400;
+}
+
+.attendance-table tbody td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.attendance-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.detail-link {
+    color: #111;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.detail-link--disabled {
+    color: #aaa;
+    font-weight: 600;
+}
+
+.attendance-list__month .month-nav.month-nav--disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+.attendance-date.weekday-sun {
+    color: #e23;
+    font-weight: 700;
+}
+
+.attendance-date.weekday-sat {
+    color: #4a90e2;
+    font-weight: 700;
+}

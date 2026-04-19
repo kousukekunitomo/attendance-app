@@ -8,8 +8,12 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
-        // セッションに url.intended があればそこへ。
-        // 無ければ マイリストタブ にフォールバック
-        return redirect()->intended(route('items.index', ['tab' => 'mylist']));
+        $user = $request->user();
+
+        if ($user && $user->is_admin) {
+            return redirect()->intended(route('admin.attendance.index'));
+        }
+
+        return redirect()->intended(route('attendance.index'));
     }
 }

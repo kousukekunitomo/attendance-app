@@ -1,69 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Flea Market App') }}</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    @yield('css')
-    @php $valCss = public_path('css/validation.css'); @endphp
-<link rel="stylesheet"
-      href="{{ asset('css/validation.css') }}@if(file_exists($valCss))?v={{ filemtime($valCss) }}@endif">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <title>{{ config('app.name', 'Attendance') }}</title>
+
+  <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+  @stack('styles')
+  @yield('css')
 </head>
+
 <body>
-    <header class="header">
-    <div class="logo">
-         <a href="{{ route('items.index', ['tab' => 'recommend']) }}"
-            aria-label="商品一覧（おすすめ）へ">
-         <img src="{{ asset('logo.svg') }}" alt="COACHTECHロゴ">
-         </a>
-    </div>
+  @php
+    $user = auth()->user();
+    $isAdmin = (bool)($user?->is_admin);
 
-    {{-- layouts/app.blade.php のヘッダー内 --}}
-    <form class="search-form" action="{{ route('items.index') }}" method="GET">
-  {{-- 今いるタブを保持（未指定時はおすすめ） --}}
-  <input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
-  <input
-    type="text"
-    name="q"
-    value="{{ request('q') }}"
-    placeholder="なにをお探しですか？"
-    maxlength="100"
-    autocomplete="off"
-  >
-</form>
+    $isAttendanceIndex = request()->routeIs('attendance.index');
 
+    // 一般ユーザーだけ「退勤後」のリンク出し分けを使う
+    $isAfterWork = false;
+    if (!$isAdmin && $isAttendanceIndex && $user) {
+      $today = \Illuminate\Support\Carbon::today()->toDateString();
+      $todayAttendance = \App\Models\Attendance::query()
+        ->where('user_id', $user->id)
+        ->whereDate('work_date', $today)
+        ->first();
+      $isAfterWork = $todayAttendance && !is_null($todayAttendance->clock_out_at);
+    }
 
+    $logoHref = $isAdmin
+      ? route('admin.attendance.index')
+      : route('attendance.index');
+  @endphp
 
-<nav class="nav-menu">
-    @auth
-        <form method="POST" action="{{ route('logout') }}" class="inline-form">
+  <header class="ct-header">
+    <div class="ct-header__inner">
+      <a class="ct-header__logo" href="{{ $logoHref }}">
+        <img src="{{ asset('images/coachteck-header-logo.png') }}" alt="COACHTECH">
+      </a>
+
+      <nav class="ct-header__nav">
+        @auth
+          @if($isAdmin)
+            {{-- ✅ 見本どおり：CSV出力なし --}}
+            <a href="{{ route('admin.attendance.index') }}">勤怠一覧</a>
+            <a href="{{ route('admin.staff.index') }}">スタッフ一覧</a>
+            <a href="{{ route('admin.stamp_correction_request.index') }}">申請一覧</a>
+          @else
+            @if($isAttendanceIndex && $isAfterWork)
+              <a href="{{ route('attendance.list') }}">今月の出勤一覧</a>
+              <a href="{{ route('stamp_correction_request.index') }}">申請一覧</a>
+            @else
+              <a href="{{ route('attendance.index') }}">勤怠</a>
+              <a href="{{ route('attendance.list') }}">勤怠一覧</a>
+              <a href="{{ route('stamp_correction_request.index') }}">申請</a>
+            @endif
+          @endif
+
+          <form class="ct-header__logout" method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="nav-button">ログアウト</button>
-        </form>
-        <a href="{{ route('mypage.index') }}" class="nav-link">マイページ</a>
-        <a href="{{ route('items.create') }}" class="nav-button white">出品</a>
-        
-    @endauth
+            <button type="submit">ログアウト</button>
+          </form>
+        @endauth
+      </nav>
+    </div>
+  </header>
 
-    @guest
-        <a href="{{ route('login') }}" class="nav-link">ログイン</a>
-        <a href="{{ route('login') }}" class="nav-link">マイページ</a>
-        <a href="{{ route('login') }}" class="nav-button white">出品</a>
-    @endguest
-</nav>
+  <main class="ct-main">
+    @yield('content')
+  </main>
 
-</header>
-
-
-
-
-
-    <main class="main">
-        @yield('content')
-    </main>
-
-    @yield('js')
+  @stack('scripts')
 </body>
 </html>

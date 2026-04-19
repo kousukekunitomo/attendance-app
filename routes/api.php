@@ -2,12 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\StripeWebhookController;
 
-Route::middleware('api')->get('/ping', function () {
-    return response()->json(['message' => 'pong']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
-Route::post('/stripe/webhook', [StripeWebhookController::class, 'handle'])
-    ->name('stripe.webhook');
+// 勤怠アプリでは Stripe Webhook は使わないので削除

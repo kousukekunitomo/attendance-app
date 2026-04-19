@@ -10,11 +10,10 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        // ✅ 追加：タブ認可ミドルウェアのエイリアス登録
-        $middleware->alias([
-            'tab.auth' => \App\Http\Middleware\RedirectIfGuestTab::class,
-        ]);
+    ->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

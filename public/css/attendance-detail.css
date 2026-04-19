@@ -1,0 +1,249 @@
+.attendance-page {
+    min-height: calc(100vh - 60px);
+    background: #f2f2f2;
+    padding: 56px 0 80px;
+}
+
+.attendance-detail {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.attendance-detail__title {
+    margin-bottom: 28px;
+}
+
+.attendance-detail__title h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 16px;
+    position: relative;
+    color: #111;
+    line-height: 1.4;
+}
+
+.attendance-detail__title h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: #111;
+    border-radius: 2px;
+}
+
+.detail-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 14px;
+}
+
+.detail-table tr {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.detail-table tr:last-child {
+    border-bottom: none;
+}
+
+.detail-table th,
+.detail-table td {
+    padding: 22px 24px;
+    vertical-align: middle;
+}
+
+.detail-table th {
+    width: 165px;
+    color: #666;
+    font-weight: 600;
+    white-space: nowrap;
+    padding-left: 46px;
+    font-size: 13px;
+    text-align: left;
+}
+
+.detail-td {
+    padding-left: 36px;
+}
+
+.detail-value {
+    font-weight: 700;
+    color: #111;
+    font-size: 14px;
+}
+
+.detail-value--name {
+    text-align: left;
+}
+
+.date-row {
+    display: flex;
+    align-items: center;
+    width: 252px;
+}
+
+.date-col {
+    width: 96px;
+    text-align: center;
+    font-weight: 700;
+    color: #111;
+    font-size: 14px;
+}
+
+.date-sep {
+    width: 60px;
+}
+
+.time-range,
+.time-fixed {
+    display: flex;
+    align-items: center;
+    width: 252px;
+}
+
+.time-fixed span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    font-weight: 700;
+    color: #111;
+    font-size: 14px;
+}
+
+.time-input {
+    width: 96px;
+    min-width: 96px;
+    height: 24px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    padding: 0 6px;
+    background: #fff;
+    font-size: 12px;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.time-sep {
+    width: 60px;
+    text-align: center;
+    font-weight: 600;
+    color: #666;
+    font-size: 13px;
+}
+
+.note-textarea {
+    width: 260px;
+    min-height: 52px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    padding: 8px 10px;
+    background: #fff;
+    font-size: 12px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.form-error {
+    margin: 6px 0 0;
+    color: #e23;
+    font-size: 12px;
+}
+
+.detail-actions--outside {
+    width: 100%;
+    max-width: 720px;
+    margin: 18px auto 0;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 4px;
+}
+
+.btn-edit {
+    min-width: 92px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    background: #111;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-edit:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.pending-msg-red {
+    color: #e23;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .attendance-page {
+        padding: 32px 16px 64px;
+    }
+
+    .attendance-detail,
+    .detail-actions--outside {
+        max-width: 100%;
+    }
+
+    .detail-table th,
+    .detail-table td {
+        padding: 16px 14px;
+    }
+
+    .detail-table th {
+        width: 110px;
+        padding-left: 16px;
+        font-size: 12px;
+    }
+
+    .detail-td {
+        padding-left: 14px;
+    }
+
+    .date-row,
+    .time-range,
+    .time-fixed {
+        width: 210px;
+    }
+
+    .date-col,
+    .time-fixed span,
+    .time-input {
+        width: 84px;
+        min-width: 84px;
+        font-size: 12px;
+    }
+
+    .time-input {
+        height: 22px;
+    }
+
+    .date-sep,
+    .time-sep {
+        width: 42px;
+    }
+
+    .note-textarea {
+        width: 100%;
+        max-width: 240px;
+    }
+}

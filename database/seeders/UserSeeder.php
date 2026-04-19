@@ -10,13 +10,31 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // ダミーユーザー10件を作成（ID: 1〜10）
-        for ($i = 1; $i <= 10; $i++) {
-            User::create([
-                'name' => "ユーザー{$i}",
-                'email' => "user{$i}@example.com",
+        $users = [
+            [
+                'name' => 'ユーザー1',
+                'email' => 'user1@example.com',
                 'password' => Hash::make('password'),
-            ]);
+                'is_admin' => false,
+            ],
+            // 必要なら追加
+            // [
+            //   'name' => 'ユーザー2',
+            //   'email' => 'user2@example.com',
+            //   'password' => Hash::make('password'),
+            //   'is_admin' => false,
+            // ],
+        ];
+
+        foreach ($users as $u) {
+            User::updateOrCreate(
+                ['email' => $u['email']],
+                [
+                    'name' => $u['name'],
+                    'password' => $u['password'],
+                    'is_admin' => $u['is_admin'] ?? false,
+                ]
+            );
         }
     }
 }
